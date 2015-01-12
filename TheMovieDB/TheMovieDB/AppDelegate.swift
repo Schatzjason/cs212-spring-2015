@@ -3,7 +3,6 @@
 //  TheMovieDB
 //
 //  Created by Jason Schatz on 1/10/15.
-//  Copyright (c) 2015 Udacity. All rights reserved.
 //
 
 import UIKit
@@ -15,17 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-        TheMovieDB.sharedInstance().moviesForSearchString("ghost"){ (result, error) -> Void in
-            
-            if let error = error? {
-                println(error)
-            } else {
-                println(result)
-            }
-        }
-        
-        
+
         return true
     }
 
