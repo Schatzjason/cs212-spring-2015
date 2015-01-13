@@ -41,3 +41,13 @@ let array2 = generateArray()
 
 let array3 = generateArray()
 
+// Question 4: Sort array
+//
+// Write code that will sort array4 using your own logic. You might want to 
+// review the logic for Selection Sort or even Bubble Sort. Find a sort 
+// algorithm that you like in a language that you are familiar with and then 
+// translate it to Swift. Resist the temptation to find a sort online that
+// is alread written in swift. Do not use Swift's sort method.
+
+let array4 = generateArray()
+
