@@ -6,7 +6,10 @@
 
 import UIKit
 
-class ActorTableViewController: UITableViewController {
+class ActorTableViewController: UIViewController {
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var storyboardNavigationItem: UINavigationItem!
     
     var actors = [Person]()
     var movie: Movie?
@@ -28,45 +31,65 @@ class ActorTableViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        // Dim the table, and empty it
         self.tableView.alpha = 0.2
+        actors = [Person]()
+        tableView.reloadData()
+
+        // Set the title
+        if let title = movie?.title {
+            storyboardNavigationItem.title = title
+        }
         
         // Load the movies
+        
+        println("Step 1 - View Controller asks for actors")
+        
         TheMovieDB.sharedInstance().castForMovie(movie!) { result, error in
-            
             if let error = error? {
                 println(error)
             } else {
+                println("Step 6 - Final step. Completion handler in View Controller. Reloads table data.")
                 self.actors = result!
-                self.tableView.reloadData()
                 
-                UIView.animateWithDuration(0.3) {
-                    self.tableView.alpha = 1
+                dispatch_async(dispatch_get_main_queue()) {
+                    
+                    self.tableView.reloadData()
+                    
+                    UIView.animateWithDuration(0.3) {
+                        self.tableView.alpha = 1
+                    }
                 }
             }
-            
         }
-
+    }
+    
+    @IBAction func returnToMovies(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: - Table View
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return actors.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
         
-        let object = actors[indexPath.row] as Person
-        cell.textLabel!.text = object.name
+        let actor = actors[indexPath.row] as Person
+        cell.textLabel!.text = actor.name
+        
+        println(actor.name)
+        
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let navigationController = self.presentingViewController as UINavigationController
         let movieViewController = navigationController.topViewController as MovieTableViewController

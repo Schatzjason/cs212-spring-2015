@@ -59,6 +59,7 @@ class TheMovieDB : NSObject {
             if let error = downloadError? {
                 completionHandler(result: nil, error: downloadError)
             } else {
+                println("Step 3 - taskForResource's completionHandler is invoked.")
                 TheMovieDB.parseJSONWithCompletionHandler(data, completionHandler)
             }
         }
@@ -79,6 +80,7 @@ class TheMovieDB : NSObject {
         if let error = parsingError? {
             completionHandler(result: nil, error: error)
         } else {
+            println("Step 4 - parseJSONWithCompletionHandler is invoked.")
             completionHandler(result: parsedResult, error: nil)
         }
     }
@@ -167,6 +169,8 @@ extension TheMovieDB {
         
         var parameters = [ID : person.id]
         
+        println("Step 2 - The moviesForPerson convenience method invokes taskForResource creating URL: ")
+        
         taskForResource(MovieCreditsForPersonIDResource, parameters: parameters) {JSONResult, error in
             
             if let error = error? {
@@ -174,6 +178,7 @@ extension TheMovieDB {
             } else {
 
                 if let results = JSONResult.valueForKey("cast") as? [[String : AnyObject]] {
+                    println("Step 5 - moviesForPerson's completion handler is invoked.")
                     completionHandler(result: Movie.moviesFromResults(results), error: nil)
                 } else {
                     completionHandler(result: nil, error: NSError(domain: "Movie for Person Parsing. Cant find cast in \(JSONResult)", code: 0, userInfo: nil))
@@ -196,6 +201,8 @@ extension TheMovieDB {
        
         var parameters = [ID : movie.id]
         
+        println("Step 2 - The castForMovie convenience method invokes taskForResource creating URL: ")
+        
         taskForResource(PersonCreditsForMovieIDResource, parameters: parameters) { JSONResult, error in
             
             if let error = error? {
@@ -203,6 +210,7 @@ extension TheMovieDB {
             } else {
                 
                 if let results = JSONResult.valueForKey("cast") as? [[String : AnyObject]] {
+                    println("Step 5 - castForMovie's completion handler is invoked.")
                     completionHandler(results: Person.peopleFromResults(results), error: nil)
                 } else {
                     completionHandler(results: nil, error: NSError(domain: "Movie for Person Parsing. Cant find cast in \(JSONResult)", code: 0, userInfo: nil))

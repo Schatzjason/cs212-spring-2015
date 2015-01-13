@@ -18,14 +18,10 @@ class MovieTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        self.navigationItem.leftBarButtonItem = self.editButtonItem()
-
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
-        self.navigationItem.rightBarButtonItem = addButton
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
         // Dim the table, and empty it
         self.tableView.alpha = 0.2
@@ -33,26 +29,36 @@ class MovieTableViewController: UITableViewController {
         tableView.reloadData()
         
         // Define the handler
-        func handler(results: [Movie]?, error: NSError?) {
+        var handler: (results: [Movie]?, error: NSError?) -> Void  = {[unowned self] results, error in
         
             
             if let error = error? {
                 println(error)
             } else {
+                println("Step 6 - Final step. Completion handler in View Controller. Reloads table data.")
                 self.movies = results!
-                self.tableView.reloadData()
                 
-                UIView.animateWithDuration(0.3) {
-                    self.tableView.alpha = 1
+                dispatch_async(dispatch_get_main_queue()) {
+                    
+                    self.tableView.reloadData()
+                    
+                    UIView.animateWithDuration(0.3) {
+                        self.tableView.alpha = 1
+                    }
                 }
             }
         }
         
         // Apply it to the person, or to Kevin Bacon
+        
+        println("Step 1 - View Controller asks for movies.")
+        
         if let person = person? {
             TheMovieDB.sharedInstance().moviesForPerson(person, handler)
+            navigationItem.title = person.name
         } else {
             TheMovieDB.sharedInstance().moviesForKevinBacon(handler)
+            navigationItem.title = "Kevin Bacon"
         }
     }
 

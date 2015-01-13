@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rS3-R9-Ivy">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Master-->
@@ -53,9 +54,9 @@
                             <outlet property="delegate" destination="pGg-6v-bdr" id="Y6K-Cp-Qkv"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Master" id="tQt-TN-PWz"/>
+                    <navigationItem key="navigationItem" title="Movies" id="tQt-TN-PWz"/>
                     <connections>
-                        <segue destination="pIT-sK-aNg" kind="presentation" identifier="showActors" modalTransitionStyle="flipHorizontal" id="9lc-3N-p1s"/>
+                        <segue destination="f8P-Fk-S5j" kind="presentation" identifier="showActors" modalTransitionStyle="flipHorizontal" id="Jvs-rh-EMd"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Cn-md-YlS" sceneMemberID="firstResponder"/>
@@ -63,30 +64,70 @@
             <point key="canvasLocation" x="605" y="64"/>
         </scene>
         <!--Actor Table View Controller-->
-        <scene sceneID="EZC-Nc-2h9">
+        <scene sceneID="U6b-eZ-SMj">
             <objects>
-                <tableViewController id="pIT-sK-aNg" customClass="ActorTableViewController" customModule="TheMovieDB" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="0lQ-RK-dP3">
+                <viewController id="f8P-Fk-S5j" customClass="ActorTableViewController" customModule="TheMovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZZa-XA-tF8"/>
+                        <viewControllerLayoutGuide type="bottom" id="yGE-ez-IfM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="E2f-YG-JHO">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="zzI-pX-ySH">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zzI-pX-ySH" id="ST6-p6-g0K">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="pIT-sK-aNg" id="3vJ-pm-kZF"/>
-                            <outlet property="delegate" destination="pIT-sK-aNg" id="3JT-cU-wZi"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vII-9C-ht4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="TrB-DE-xpz">
+                                <rect key="frame" x="0.0" y="62" width="600" height="538"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="kvx-Q5-rt0">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kvx-Q5-rt0" id="vfn-RG-ofp">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="f8P-Fk-S5j" id="wbZ-aA-FDv"/>
+                                    <outlet property="delegate" destination="f8P-Fk-S5j" id="jYC-Sg-Pp3"/>
+                                </connections>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HLj-EE-ag3">
+                                <rect key="frame" x="0.0" y="18" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Uuw-8k-1dt"/>
+                                </constraints>
+                                <color key="tintColor" red="1" green="0.47417087409999997" blue="0.28953513559999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <navigationItem id="VYR-0N-uQS">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="Qgw-AS-Tmh">
+                                            <connections>
+                                                <action selector="returnToMovies:" destination="f8P-Fk-S5j" id="44k-oN-DH3"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="HLj-EE-ag3" firstAttribute="leading" secondItem="E2f-YG-JHO" secondAttribute="leadingMargin" constant="-16" id="6wR-Bf-jOT"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="HLj-EE-ag3" secondAttribute="trailing" constant="-16" id="K65-LG-DoN"/>
+                            <constraint firstItem="TrB-DE-xpz" firstAttribute="leading" secondItem="E2f-YG-JHO" secondAttribute="leadingMargin" constant="-16" id="gVM-aN-WdX"/>
+                            <constraint firstItem="yGE-ez-IfM" firstAttribute="top" secondItem="TrB-DE-xpz" secondAttribute="bottom" id="lhB-Wo-jwW"/>
+                            <constraint firstItem="HLj-EE-ag3" firstAttribute="top" secondItem="E2f-YG-JHO" secondAttribute="topMargin" constant="18" id="mAB-QW-mrt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TrB-DE-xpz" secondAttribute="trailing" constant="-16" id="pWe-OZ-aT0"/>
+                            <constraint firstItem="TrB-DE-xpz" firstAttribute="top" secondItem="HLj-EE-ag3" secondAttribute="bottom" id="qWu-xA-rmO"/>
+                        </constraints>
+                    </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <outlet property="storyboardNavigationItem" destination="VYR-0N-uQS" id="RR4-te-asA"/>
+                        <outlet property="tableView" destination="TrB-DE-xpz" id="98f-4x-7f5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="61j-D8-xV4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1294" y="64"/>
+            <point key="canvasLocation" x="1294" y="67"/>
         </scene>
     </scenes>
 </document>
