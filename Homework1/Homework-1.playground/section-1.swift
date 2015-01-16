@@ -49,5 +49,5 @@ let array3 = generateArray()
 // translate it to Swift. Resist the temptation to find a sort online that
 // is alread written in swift. Do not use Swift's sort method.
 
-let array4 = generateArray()
+var array4 = generateArray()
 
