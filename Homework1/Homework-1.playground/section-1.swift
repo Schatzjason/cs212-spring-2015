@@ -24,6 +24,19 @@ func generateArray() -> [Int?] {
 // Write code that counts the number of nil values in array1
 
 let array1 = generateArray()
+var countNil = 0
+
+for value in array1 [0..<array1.count]{
+
+    if value == nil {
+
+        countNil++
+
+    }
+
+}
+
+println(" Total nil is \(countNil)")
 
 // Question 2: Mean
 //
@@ -32,6 +45,19 @@ let array1 = generateArray()
 // directly under the declaration of array2
 
 let array2 = generateArray()
+var mean = 0
+
+for value in array2 [0..<array2.count]{
+
+    if value != nil {
+
+        mean++
+
+    }
+
+}
+
+println(" Total mean is \(mean)")
 
 // Question 3: New Array
 //
