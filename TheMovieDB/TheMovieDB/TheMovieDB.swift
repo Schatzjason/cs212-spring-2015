@@ -17,6 +17,9 @@ private let PersonCreditsForMovieIDResource = "movie/:id/credits"
 private let ID = "id"
 private let KevinBaconID = 4724
 
+let fantasticMrFoxURL = "http://image.tmdb.org/t/p/w780/750pfEttsYAVmynRg2vmt1AXh4q.jpg"
+let kevinBaconMoviesURL = "http://api.themoviedb.org/3/person/4724/movie_credits?api_key=3c534dc71a2f9d28e9594e5773abcc93"
+
 
 class TheMovieDB : NSObject {
     
