@@ -15,6 +15,7 @@
 		4DFB68C81AB1F984001DD3DF /* KevinBaconDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB68C71AB1F984001DD3DF /* KevinBaconDataTests.swift */; };
 		4DFB68D21AB1F9B8001DD3DF /* kevinBaconMoviesPretty.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4DFB68D11AB1F9B8001DD3DF /* kevinBaconMoviesPretty.txt */; };
 		4DFB68D41AB201DB001DD3DF /* kevinBaconMoviesData in Resources */ = {isa = PBXBuildFile; fileRef = 4DFB68D31AB201DB001DD3DF /* kevinBaconMoviesData */; };
+		4DFB68D61AB22F60001DD3DF /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB68D51AB22F60001DD3DF /* Movie.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		4DFB68C71AB1F984001DD3DF /* KevinBaconDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KevinBaconDataTests.swift; sourceTree = "<group>"; };
 		4DFB68D11AB1F9B8001DD3DF /* kevinBaconMoviesPretty.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = kevinBaconMoviesPretty.txt; sourceTree = "<group>"; };
 		4DFB68D31AB201DB001DD3DF /* kevinBaconMoviesData */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = kevinBaconMoviesData; sourceTree = "<group>"; };
+		4DFB68D51AB22F60001DD3DF /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 				4DFB68D31AB201DB001DD3DF /* kevinBaconMoviesData */,
 				4DFB68D11AB1F9B8001DD3DF /* kevinBaconMoviesPretty.txt */,
 				4DFB68B31AB1F983001DD3DF /* ViewController.swift */,
+				4DFB68D51AB22F60001DD3DF /* Movie.swift */,
 				4DFB68B51AB1F983001DD3DF /* Main.storyboard */,
 				4DFB68B11AB1F983001DD3DF /* AppDelegate.swift */,
 				4DFB68B81AB1F983001DD3DF /* Images.xcassets */,
@@ -222,6 +225,7 @@
 			files = (
 				4DFB68B41AB1F983001DD3DF /* ViewController.swift in Sources */,
 				4DFB68B21AB1F983001DD3DF /* AppDelegate.swift in Sources */,
+				4DFB68D61AB22F60001DD3DF /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
