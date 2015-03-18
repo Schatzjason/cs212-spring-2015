@@ -51,7 +51,7 @@ class TheMovieDB : NSObject {
             mutableParameters.removeValueForKey(ID)
         }
         
-        let urlString = BaseUrl + mutableResource + TheMovieDB.escapedParameterss(mutableParameters)
+        let urlString = BaseUrl + mutableResource + TheMovieDB.escapedParameters(mutableParameters)
         let url = NSURL(string: urlString)!
         let request = NSURLRequest(URL: url)
         
@@ -88,7 +88,7 @@ class TheMovieDB : NSObject {
         }
     }
     
-    class func escapedParameterss(parameters: [String : AnyObject]) -> String {
+    class func escapedParameters(parameters: [String : AnyObject]) -> String {
         
         var urlVars = [String]()
 
