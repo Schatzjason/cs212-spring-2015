@@ -28,7 +28,7 @@ class FavoriteActorViewController : UITableViewController, ActorPickerViewContro
     // Mark: - Actions
     
     func addActor() {
-        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("ActorPickerViewController") as ActorPickerViewController
+        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("ActorPickerViewController") as! ActorPickerViewController
         
         controller.delegate = self
         
@@ -39,7 +39,7 @@ class FavoriteActorViewController : UITableViewController, ActorPickerViewContro
     
     func actorPicker(actorPicker: ActorPickerViewController, didPickActor actor: Person?) {
 
-        if let newActor = actor? {
+        if let newActor = actor {
             
             // Check to see if we already have this actor
             for a in actors {
@@ -56,7 +56,7 @@ class FavoriteActorViewController : UITableViewController, ActorPickerViewContro
     }
     
     lazy var documentsDirectoryURL: NSURL = {
-        return NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0] as NSURL
+        return NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0] as! NSURL
         }()
     
     lazy var actorArrayFile: NSURL = {
@@ -74,13 +74,13 @@ class FavoriteActorViewController : UITableViewController, ActorPickerViewContro
         let actor = actors[indexPath.row]
         let CellIdentifier = "ActorCell"
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as ActorTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as! ActorTableViewCell
         
         cell.nameLabel!.text = actor.name
         cell.frameImageView.image = UIImage(named: "personFrame")
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         
-        if let localImage = actor.image? {
+        if let localImage = actor.image {
             cell.actorImageView.image = localImage
         } else if actor.imagePath == "" {
             cell.actorImageView.image = UIImage(named: "personNoImage")
@@ -96,7 +96,7 @@ class FavoriteActorViewController : UITableViewController, ActorPickerViewContro
             let size = TheMovieDB.sharedInstance().config.profileSizes[1]
             let task = TheMovieDB.sharedInstance().taskForImageWithSize(size, filePath: actor.imagePath) { (imageData, error) -> Void in
             
-                if let data = imageData? {
+                if let data = imageData {
                     dispatch_async(dispatch_get_main_queue()) {
                         let image = UIImage(data: data)
                         actor.image = image
@@ -112,7 +112,7 @@ class FavoriteActorViewController : UITableViewController, ActorPickerViewContro
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let controller = storyboard!.instantiateViewControllerWithIdentifier("MovieListViewController") as MovieListViewController
+        let controller = storyboard!.instantiateViewControllerWithIdentifier("MovieListViewController") as! MovieListViewController
         
         controller.actor = actors[indexPath.row]
         
@@ -134,7 +134,7 @@ class FavoriteActorViewController : UITableViewController, ActorPickerViewContro
     
     var actorArrayURL: NSURL {
         let filename = "favoriteActorsArray"
-        let documentsDirectoryURL: NSURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first as NSURL
+        let documentsDirectoryURL: NSURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first as! NSURL
         
         return documentsDirectoryURL.URLByAppendingPathComponent(filename)
     }

@@ -58,7 +58,7 @@ class ActorPickerViewController: UIViewController, UITableViewDelegate, UITableV
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
         // Cancel the last task
-        if let task = searchTask? {
+        if let task = searchTask {
             task.cancel()
         }
         
@@ -77,7 +77,7 @@ class ActorPickerViewController: UIViewController, UITableViewDelegate, UITableV
         searchTask = TheMovieDB.sharedInstance().taskForResource(resource, parameters: parameters) { [unowned self] jsonResult, error in
             
             // Handle the error case
-            if let error = error? {
+            if let error = error {
                 println("Error searching for actors: \(error.localizedDescription)")
                 return
             }
@@ -107,7 +107,7 @@ class ActorPickerViewController: UIViewController, UITableViewDelegate, UITableV
         let CellReuseId = "ActorSearchCell"
         let actor = actors[indexPath.row]
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(CellReuseId) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(CellReuseId) as! UITableViewCell
         
         cell.textLabel!.text = actor.name
         

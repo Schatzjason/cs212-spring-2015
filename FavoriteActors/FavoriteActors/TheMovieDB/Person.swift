@@ -22,8 +22,8 @@ class Person {
     var movies = [Movie]()
     
     init(dictionary: [String : AnyObject]) {
-        name = dictionary[Keys.Name] as String
-        id = dictionary[TheMovieDB.Keys.ID] as Int
+        name = dictionary[Keys.Name] as! String
+        id = dictionary[TheMovieDB.Keys.ID] as! Int
         
         if var pathForImgage = dictionary[Keys.ProfilePath] as? String {
             imagePath = pathForImgage
