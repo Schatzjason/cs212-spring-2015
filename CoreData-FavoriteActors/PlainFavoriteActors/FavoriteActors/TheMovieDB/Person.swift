@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import CoreData
 
-class Person {
+@objc(Person)
+
+class Person: NSManagedObject {
     
     struct Keys {
         static let Name = "name"
@@ -16,12 +19,21 @@ class Person {
         static let ID = "id"
     }
     
-    var name: String
-    var id: Int
-    var imagePath: String?
-    var movies: [Movie] = [Movie]()
+    @NSManaged var name: String
+    @NSManaged var id: Int
+    @NSManaged var imagePath: String?
+    @NSManaged var movies: [Movie]
     
-    init(dictionary: [String : AnyObject]) {
+    override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
+        
+        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    }
+    
+    convenience init(context: NSManagedObjectContext, dictionary: [String : AnyObject]) {
+    
+        let entity = NSEntityDescription.entityForName("Person", inManagedObjectContext: context)!
+        
+        self.init(entity: entity, insertIntoManagedObjectContext: context)
         
         name = dictionary[Keys.Name] as String
         id = dictionary[Keys.ID] as Int

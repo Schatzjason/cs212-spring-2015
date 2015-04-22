@@ -20,6 +20,7 @@ class Movie {
     var id: Int
     var posterPath: String?
     var releaseDate: NSDate?
+    var actor: Person?
     
     init(dictionary: [String : AnyObject]) {
         

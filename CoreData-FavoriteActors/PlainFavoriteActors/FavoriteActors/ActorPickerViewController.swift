@@ -32,6 +32,20 @@ class ActorPickerViewController: UIViewController, UITableViewDelegate, UITableV
     var searchTask: NSURLSessionDataTask?
     
     
+    // MARK: - Core Data Helpers
+    
+    lazy var context: NSManagedObjectContext = {
+        let delegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let mainContext = delegate.managedObjectContext!
+        
+        let newContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+        
+        newContext.persistentStoreCoordinator = mainContext.persistentStoreCoordinator
+        
+        return newContext
+    }()
+    
+    
     // MARK: - life Cycle
     override func viewDidLoad() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Cancel, target: self, action: "cancel")
@@ -88,13 +102,17 @@ class ActorPickerViewController: UIViewController, UITableViewDelegate, UITableV
                 
                 // Create an array of Person instances from the JSON dictionaries
                 // If we change this so that it inserts into a context, which context should it be? 
-                self.actors = actorDictionaries.map() {
-                    Person(dictionary: $0)
-                }
                 
-                // Reload the table on the main thread
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.tableView!.reloadData()
+                self.context.performBlock() {
+                
+                    self.actors = actorDictionaries.map() {
+                        Person(context: self.context, dictionary: $0)
+                    }
+                
+                    // Reload the table on the main thread
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.tableView!.reloadData()
+                    }
                 }
             }
         }

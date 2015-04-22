@@ -57,8 +57,24 @@ class FavoriteActorViewController : UITableViewController, ActorPickerViewContro
             
             // Here we add the actor object that comes from the ActorPickerViewController. Remember
             // that we cannot do this directly once we incoporate Core Data. The ActorPickerViewController
-            // uses a "scratch" context. It fills its table with actors that have not been picked. We 
+            // uses a "private queue" context. It fills its table with actors that have not been picked. We 
             // need to create a new person object that is inserted into the shared context. 
+            
+            // Create the dictionary
+            var dictionary = [String : AnyObject]()
+            dictionary[Person.Keys.Name] = newActor.name
+            dictionary[Person.Keys.ID] = newActor.id
+            if let imagePath = newActor.imagePath {
+                dictionary[Person.Keys.ProfilePath] = imagePath
+            }
+            
+            // Insert the Person, using the dictionary. The "context" property does not exist yet
+            // You should create it as a lazy var
+            let actor = Person(context: context, dictionary: dictionary)
+            
+            // The saveContext method doesnot exist yet, you should write it
+            saveContext()
+            
             self.actors.append(newActor)
         }
     }
