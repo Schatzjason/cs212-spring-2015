@@ -25,7 +25,7 @@ class DetailViewController: UIViewController {
 
         if let detailItem = self.detailItem {
             if let label = self.detailDescriptionLabel {
-                label.text = detailItem.timeStamp.description
+                label.text = detailItem.timeStamp?.description ?? "nil"
             }
         }
     }

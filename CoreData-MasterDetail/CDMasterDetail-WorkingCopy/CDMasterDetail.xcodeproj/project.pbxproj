@@ -16,6 +16,7 @@
 		A03FD4F51ADE0F2B00C0944B /* CDMasterDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03FD4F41ADE0F2B00C0944B /* CDMasterDetailTests.swift */; };
 		A03FD5001ADE0FF500C0944B /* CDMasterDetail.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A03FD4FE1ADE0FF500C0944B /* CDMasterDetail.xcdatamodeld */; };
 		A03FD5021ADE117A00C0944B /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03FD5011ADE117A00C0944B /* Event.swift */; };
+		A0B7568B1AE734DA00FFE9A2 /* EventII.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B7568A1AE734DA00FFE9A2 /* EventII.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		A03FD4F41ADE0F2B00C0944B /* CDMasterDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDMasterDetailTests.swift; sourceTree = "<group>"; };
 		A03FD4FF1ADE0FF500C0944B /* CDMasterDetail.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CDMasterDetail.xcdatamodel; sourceTree = "<group>"; };
 		A03FD5011ADE117A00C0944B /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		A0B7568A1AE734DA00FFE9A2 /* EventII.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventII.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 			children = (
 				A03FD4FE1ADE0FF500C0944B /* CDMasterDetail.xcdatamodeld */,
 				A03FD5011ADE117A00C0944B /* Event.swift */,
+				A0B7568A1AE734DA00FFE9A2 /* EventII.swift */,
 				A03FD4DC1ADE0F2B00C0944B /* AppDelegate.swift */,
 				A03FD4DE1ADE0F2B00C0944B /* MasterViewController.swift */,
 				A03FD4E01ADE0F2B00C0944B /* DetailViewController.swift */,
@@ -225,6 +228,7 @@
 				A03FD5001ADE0FF500C0944B /* CDMasterDetail.xcdatamodeld in Sources */,
 				A03FD4DF1ADE0F2B00C0944B /* MasterViewController.swift in Sources */,
 				A03FD4DD1ADE0F2B00C0944B /* AppDelegate.swift in Sources */,
+				A0B7568B1AE734DA00FFE9A2 /* EventII.swift in Sources */,
 				A03FD5021ADE117A00C0944B /* Event.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,6 +421,7 @@
 				A03FD4FA1ADE0F2B00C0944B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A03FD4FB1ADE0F2B00C0944B /* Build configuration list for PBXNativeTarget "CDMasterDetailTests" */ = {
 			isa = XCConfigurationList;
@@ -425,6 +430,7 @@
 				A03FD4FD1ADE0F2B00C0944B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

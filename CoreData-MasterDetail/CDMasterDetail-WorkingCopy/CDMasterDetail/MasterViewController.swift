@@ -27,9 +27,10 @@ class MasterViewController: UITableViewController {
     }
 
     func insertNewObject(sender: AnyObject) {
+
+        let event = Event(context: context)
         
-        // Insert an event into the context
-        let event = Event(insertIntoManagedObjectContext: context)
+        event.timeStamp = NSDate()
         
         // Save the context
         saveContext()
@@ -46,6 +47,9 @@ class MasterViewController: UITableViewController {
     
     func fetchAllEvents() -> [Event] {
         let request = NSFetchRequest(entityName: "Event")
+        
+        let sortDescriptor = NSSortDescriptor(key: "timeStamp", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
         
         let events = context.executeFetchRequest(request, error: nil) as [Event]
 
@@ -99,7 +103,7 @@ class MasterViewController: UITableViewController {
         let event = events[indexPath.row]
 
         println("cell: \(indexPath.row), label: \(cell.textLabel), event: \(event)")
-        cell.textLabel!.text = event.timeStamp.description
+        cell.textLabel!.text = event.timeStamp?.description ?? "nil"
         return cell
     }
 
@@ -111,6 +115,13 @@ class MasterViewController: UITableViewController {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
         if editingStyle == .Delete {
+            // Delete the event from the context
+            let event = events[indexPath.row]
+            context.deleteObject(event)
+            
+            // Save the context
+            saveContext()
+            
             events.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
