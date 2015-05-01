@@ -17,7 +17,7 @@ import Foundation
  */
 
 // MARK: - Files Support
-private let _documentsDirectoryURL: NSURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first as NSURL
+private let _documentsDirectoryURL: NSURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first as! NSURL
 private let _fileURL: NSURL = _documentsDirectoryURL.URLByAppendingPathComponent("TheMovieDB-Context")
 
 
@@ -68,7 +68,7 @@ class Config: NSObject, NSCoding {
     
     var daysSinceLastUpdate: Int? {
         
-        if let lastUpdate = dateUpdated? {
+        if let lastUpdate = dateUpdated {
             return Int(NSDate().timeIntervalSinceDate(lastUpdate)) / 60*60*24
         } else {
             return nil
@@ -78,7 +78,7 @@ class Config: NSObject, NSCoding {
     func updateIfDaysSinceUpdateExceeds(days: Int) {
 
         // If the config is up to date then return
-        if let daysSinceLastUpdate = daysSinceLastUpdate? {
+        if let daysSinceLastUpdate = daysSinceLastUpdate {
             if (daysSinceLastUpdate <= days) {
                 return
             }
@@ -87,7 +87,7 @@ class Config: NSObject, NSCoding {
         // Otherwise, update
         TheMovieDB.sharedInstance().updateConfig() { didSucceed, error in
             
-            if let error = error? {
+            if let error = error {
                 println("Error updating config: \(error.localizedDescription)")
             } else {
                 println("Updated Config: \(didSucceed)")
@@ -105,10 +105,10 @@ class Config: NSObject, NSCoding {
     let DateUpdatedKey = "config.date_update_key"
     
     required init(coder aDecoder: NSCoder) {
-        baseImageURLString = aDecoder.decodeObjectForKey(BaseImageURLStringKey) as String
-        secureBaseImageURLString = aDecoder.decodeObjectForKey(SecureBaseImageURLStringKey) as String
-        posterSizes = aDecoder.decodeObjectForKey(PosterSizesKey) as [String]
-        profileSizes = aDecoder.decodeObjectForKey(ProfileSizesKey) as [String]
+        baseImageURLString = aDecoder.decodeObjectForKey(BaseImageURLStringKey) as! String
+        secureBaseImageURLString = aDecoder.decodeObjectForKey(SecureBaseImageURLStringKey) as! String
+        posterSizes = aDecoder.decodeObjectForKey(PosterSizesKey) as! [String]
+        profileSizes = aDecoder.decodeObjectForKey(ProfileSizesKey) as! [String]
         dateUpdated = aDecoder.decodeObjectForKey(DateUpdatedKey) as? NSDate
     }
     

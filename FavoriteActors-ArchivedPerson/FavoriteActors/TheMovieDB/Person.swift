@@ -22,8 +22,8 @@ class Person: NSObject, NSCoding  {
     var movies = [Movie]()
     
     init(dictionary: [String : AnyObject]) {
-        name = dictionary[Keys.Name] as String
-        id = dictionary[TheMovieDB.Keys.ID] as Int
+        name = dictionary[Keys.Name] as! String
+        id = dictionary[TheMovieDB.Keys.ID] as! Int
         
         if var pathForImgage = dictionary[Keys.ProfilePath] as? String {
             imagePath = pathForImgage
@@ -41,9 +41,9 @@ class Person: NSObject, NSCoding  {
     required init(coder unarchiver: NSCoder) {
         super.init()
         
-        name = unarchiver.decodeObjectForKey(Keys.Name) as String
+        name = unarchiver.decodeObjectForKey(Keys.Name) as! String
         id = unarchiver.decodeIntegerForKey(Keys.ID)
-        imagePath = unarchiver.decodeObjectForKey(Keys.ProfilePath) as String
+        imagePath = unarchiver.decodeObjectForKey(Keys.ProfilePath) as! String
     }
    
     /**
